@@ -1,5 +1,5 @@
 import { SummaryContainer, SummaryCard } from "./styles";
-import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar } from 'phosphor-react'
+import { ArrowCircleDown, ArrowCircleUp, CurrencyDollar, ListBullets } from 'phosphor-react'
 import { priceFormatter } from "../../utils/currencyFormatter";
 import { useSummary } from "../../hooks/useSummary";
 
@@ -44,6 +44,10 @@ export function Summary() {
             <SummaryCard>
                 <header>
                     <span>Transactions</span>
+                    <ListBullets
+                        size={32}
+                        color="#00b37e"
+                    />
                 </header>
 
                 <strong>{summary.transactionsCount}</strong>
