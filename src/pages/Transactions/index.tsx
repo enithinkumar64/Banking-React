@@ -9,7 +9,11 @@ import { TrashSimple } from "phosphor-react";
 import { axiosInstance } from "../../libs/axios/axios";
 
 export function Transactions() {
-    const { originalData, transactions, setTransactions } = useContext(TransactionsContext)
+    const { originalData, transactions, setTransactions, isLoading } = useContext(TransactionsContext)
+
+    if (isLoading) {
+        return <div>Loading transactions...</div>
+    }
 
     const onClickDeleteTransaction = (itemId: string) => {
         axiosInstance.delete(`/transactions/${itemId}`)

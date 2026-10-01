@@ -14,6 +14,7 @@ interface ITransactionContext {
     transactions: ITransaction[],
     setTransactions: React.Dispatch<React.SetStateAction<ITransaction[]>>,
     originalData: ITransaction[],
+    isLoading: boolean,
 }
 
 export const TransactionsContext = createContext({} as ITransactionContext)
@@ -26,6 +27,7 @@ const defaultCouldNotFetchData = [
 let originalData: ITransaction[]
 export function TransactionsProvider({ children }: { children: ReactNode }) {
     const [transactions, setTransactions] = useState<ITransaction[]>([])
+    const [isLoading, setIsLoading] = useState(true)
 
     useEffect(() => {
         async function fetchTransactions() {
@@ -40,16 +42,20 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
                 setTransactions(defaultCouldNotFetchData)
                 originalData = defaultCouldNotFetchData
             }
+            finally {
+                setIsLoading(false)
+            }
         }
 
         fetchTransactions()
     }, [])
 
-    return originalData && (
+    return (
         <TransactionsContext.Provider value={{
             originalData,
             transactions,
             setTransactions,
+            isLoading,
         }}>
             {children}
         </TransactionsContext.Provider>
