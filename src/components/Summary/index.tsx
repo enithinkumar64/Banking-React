@@ -41,6 +41,13 @@ export function Summary() {
 
                 <strong>$ {priceFormatter.format(Number(summary.total.toFixed(2))).replace('$', '')}</strong>
             </SummaryCard>
+            <SummaryCard>
+                <header>
+                    <span>Transactions</span>
+                </header>
+
+                <strong>{summary.transactionsCount}</strong>
+            </SummaryCard>
         </SummaryContainer>
     )
 } 

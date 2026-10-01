@@ -15,5 +15,8 @@ export function useSummary() {
         return acc
     }, { entry: 0, exit: 0, total: 0 })
 
-    return summary
+    return {
+        ...summary,
+        transactionsCount: transactions.length
+    }
 }
