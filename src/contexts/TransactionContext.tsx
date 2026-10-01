@@ -14,6 +14,7 @@ interface ITransactionContext {
     transactions: ITransaction[],
     setTransactions: React.Dispatch<React.SetStateAction<ITransaction[]>>,
     originalData: ITransaction[],
+    isLoading: boolean,
 }
 
 export const TransactionsContext = createContext({} as ITransactionContext)
@@ -49,15 +50,12 @@ export function TransactionsProvider({ children }: { children: ReactNode }) {
         fetchTransactions()
     }, [])
 
-    if (isLoading) {
-        return <div>Loading transactions...</div>
-    }
-
-    return originalData && (
+    return (
         <TransactionsContext.Provider value={{
             originalData,
             transactions,
             setTransactions,
+            isLoading,
         }}>
             {children}
         </TransactionsContext.Provider>
