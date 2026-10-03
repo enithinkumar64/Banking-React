@@ -32,7 +32,7 @@ export function SearchForm() {
                 <input
                     tabIndex={1}
                     type="text"
-                    placeholder="Search for transactions"
+                    placeholder="Search by description or category"
                     {...register('query')}
                 />
                 <button
