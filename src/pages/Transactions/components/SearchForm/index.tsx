@@ -13,9 +13,11 @@ export function SearchForm() {
         useForm<TSearchFormSchema>({ resolver: zodResolver(searchFormSchema) })
 
     const handleSearchTransactions = async (data: TSearchFormSchema) => {
+        const query = data.query.trim().toLowerCase()
+
         setTransactions(originalData.filter(transaction =>
-            transaction.description.toLowerCase().includes(data.query.toLowerCase()) ||
-            transaction.category.toLowerCase().includes(data.query.toLowerCase())
+            transaction.description.toLowerCase().includes(query) ||
+            transaction.category.toLowerCase().includes(query)
         ))
     }
 
